@@ -24,8 +24,9 @@ export interface HeatMapGridProps {
 
 function getMinMax(data: number[][]): [number, number] {
   const flatArray = data.reduce((i, o) => [...o, ...i], [])
-  const max = Math.max(...flatArray)
-  const min = Math.min(...flatArray)
+  // Calculate max/min ignoring null values
+  const max = Math.max(...flatArray.filter((v) => v !== null));
+  const min = Math.min(...flatArray.filter((v) => v !== null));
   return [min, max]
 }
 
